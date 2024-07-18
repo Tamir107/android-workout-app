@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/allItemsFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/allItemsFragment"
@@ -33,4 +33,29 @@
         android:name="com.hit.gymtime.ui.single_item.DetailItemFragment"
         android:label="detail_item_layout"
         tools:layout="@layout/detail_item_layout" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.hit.gymtime.ui.home_screen.HomeFragment"
+        android:label="home_layout"
+        tools:layout="@layout/home_layout" >
+        <action
+            android:id="@+id/action_homeFragment_to_allItemsFragment"
+            app:destination="@id/allItemsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_musicFragment"
+            app:destination="@id/musicFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_preferencesFragment"
+            app:destination="@id/preferencesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/musicFragment"
+        android:name="com.hit.gymtime.ui.music.MusicFragment"
+        android:label="music_layout"
+        tools:layout="@layout/music_layout" />
+    <fragment
+        android:id="@+id/preferencesFragment"
+        android:name="com.hit.gymtime.ui.user_preferences.PreferencesFragment"
+        android:label="preferences_layout"
+        tools:layout="@layout/preferences_layout" />
 </navigation>

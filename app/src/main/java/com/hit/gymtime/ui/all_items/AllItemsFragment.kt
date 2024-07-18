@@ -81,12 +81,10 @@ class AllItemsFragment : Fragment(), MenuProvider{
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val item = (binding.recycler.adapter as ItemAdapter).itemAt(viewHolder.adapterPosition)
                 viewModel.deleteItem(item)
-                //ItemManager.remove(viewHolder.adapterPosition)
-                //binding.recycler.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
             }
         }).attachToRecyclerView(binding.recycler)
 
-        val menuHost: MenuHost = requireActivity()
+
         activity?.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
@@ -109,17 +107,6 @@ class AllItemsFragment : Fragment(), MenuProvider{
         }
         return false
     }
-
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.main_menu,menu)
-//        super.onCreateOptionsMenu(menu, inflater)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//
-//        return super.onOptionsItemSelected(item)
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
