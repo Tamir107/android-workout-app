@@ -4,58 +4,110 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.add_item.AdditemFragment"
+    android:layout_marginHorizontal="10dp"
     android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Enter item title"
-            android:id="@+id/item_title">
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:text="Date:"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
+        android:id="@+id/workout_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:hint="Select Date"
+        android:focusable="false"
+        android:clickable="true"
+        android:inputType="none"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hour:"
+        android:textStyle="bold"
+
+        android:layout_marginTop="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/workout_hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select Hour"
+        android:layout_marginTop="5dp"
+        android:focusable="false"
+        android:clickable="true"
+        android:inputType="none"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workout Type:"
+        android:textStyle="bold"
+
+        android:layout_marginTop="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/workout_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workout Location:"
+        android:textStyle="bold"
+
+        android:layout_marginTop="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/workout_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Enter item description"
-            android:id="@+id/item_des">
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_gravity="center"
+            android:layout_marginEnd="50dp"
+            android:text="Pick image"
+            android:id="@+id/image_btn">
+        </Button>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+
+            android:src="@drawable/ic_launcher_background"
+            android:id="@+id/res_img">
+        </ImageView>
+
+
+    </LinearLayout>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Pick image"
-        android:id="@+id/image_btn">
-    </Button>
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/ic_launcher_background"
-        android:id="@+id/res_img">
-    </ImageView>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:text="Done"
         android:id="@+id/done_btn">
     </Button>

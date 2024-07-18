@@ -9,11 +9,17 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "items")
 data class Item(
 
-    @ColumnInfo(name = "item_name")
-    val title: String,
+    @ColumnInfo(name = "item_date")
+    val date: String,
 
-    @ColumnInfo(name = "content_des")
-    val description: String,
+    @ColumnInfo(name = "item_hour")
+    val hour: String,
+
+    @ColumnInfo(name = "item_type")
+    val type: String?,
+
+    @ColumnInfo(name = "item_location")
+    val location: String?,
 
     @ColumnInfo(name = "image")
     val photo: String?
@@ -25,6 +31,8 @@ data class Item(
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
         parcel.readString()
     ) {
         id = parcel.readInt()
@@ -33,8 +41,10 @@ data class Item(
         return 0
     }
     override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeString(title)
-        dest.writeString(description)
+        dest.writeString(date)
+        dest.writeString(hour)
+        dest.writeString(type)
+        dest.writeString(location)
         dest.writeString(photo)
         dest.writeInt(id)
     }

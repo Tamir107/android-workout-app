@@ -29,8 +29,8 @@ class DetailItemFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.chosenItem.observe(viewLifecycleOwner){
-            binding.itemTitle.text = it.title
-            binding.itemDes.text = it.description
+            binding.itemTitle.text = it.date
+            binding.itemDes.text = it.hour
             Glide.with(requireContext()).load(it.photo).circleCrop().into(binding.itemImg)
         }
 

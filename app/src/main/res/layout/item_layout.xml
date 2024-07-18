@@ -29,17 +29,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Main item title"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:id="@+id/item_title">
+                android:id="@+id/item_date">
             </TextView>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="5dp"
                 android:text="Main item description"
-                android:textSize="15sp"
-                android:id="@+id/item_des">
+                android:textSize="10sp"
+                android:id="@+id/item_hour">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Main item description"
+                android:textSize="10sp"
+                android:id="@+id/item_type">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Main item description"
+                android:textSize="10sp"
+                android:id="@+id/item_location">
             </TextView>
         </LinearLayout>
 

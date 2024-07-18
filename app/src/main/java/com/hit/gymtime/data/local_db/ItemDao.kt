@@ -20,7 +20,7 @@ interface ItemDao {
     @Update
     suspend fun updateItem(item: Item)
 
-    @Query("SELECT * FROM items ORDER BY item_name ASC")
+    @Query("SELECT * FROM items ORDER BY item_date ASC")
     fun getItems(): LiveData<List<Item>>
 
     @Query("SELECT * FROM items WHERE id LIKE :id")

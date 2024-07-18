@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.hit.gymtime.data.models.Item
 
-@Database(entities = arrayOf(Item::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Item::class), version = 2, exportSchema = false)
 abstract class ItemDataBase : RoomDatabase() {
     abstract fun itemsDao() : ItemDao
 
