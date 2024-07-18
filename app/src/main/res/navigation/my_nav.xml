@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/allItemsFragment">
+
+    <fragment
+        android:id="@+id/allItemsFragment"
+        android:name="com.hit.gymtime.ui.all_items.AllItemsFragment"
+        android:label="all_items_layout"
+        tools:layout="@layout/all_items_layout" >
+        <action
+            android:id="@+id/action_allItemsFragment_to_additemFragment"
+            app:destination="@id/additemFragment" />
+        <action
+            android:id="@+id/action_allItemsFragment_to_detailItemFragment"
+            app:destination="@id/detailItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/additemFragment"
+        android:name="com.hit.gymtime.ui.add_item.AdditemFragment"
+        android:label="add_item_layout"
+        tools:layout="@layout/add_item_layout" >
+        <action
+            android:id="@+id/action_additemFragment_to_allItemsFragment"
+            app:destination="@id/allItemsFragment"
+            app:popUpTo="@id/allItemsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailItemFragment"
+        android:name="com.hit.gymtime.ui.single_item.DetailItemFragment"
+        android:label="detail_item_layout"
+        tools:layout="@layout/detail_item_layout" />
+</navigation>
