@@ -34,10 +34,6 @@ class HomeFragment : Fragment(), MenuProvider {
             findNavController().navigate(R.id.action_homeFragment_to_allItemsFragment)
         }
 
-        binding.musicButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_contactsFragment)
-        }
-
         binding.preferencesBtn.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_preferencesFragment)
         }

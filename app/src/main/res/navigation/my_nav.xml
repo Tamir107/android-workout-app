@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_allItemsFragment_to_detailItemFragment"
             app:destination="@id/detailItemFragment" />
+        <action
+            android:id="@+id/action_allItemsFragment_to_editItemFragment"
+            app:destination="@id/editItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/additemFragment"
@@ -27,6 +30,9 @@
             app:destination="@id/allItemsFragment"
             app:popUpTo="@id/allItemsFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_additemFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailItemFragment"
@@ -44,9 +50,6 @@
         <action
             android:id="@+id/action_homeFragment_to_preferencesFragment"
             app:destination="@id/preferencesFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_contactsFragment"
-            app:destination="@id/contactsFragment" />
     </fragment>
     <fragment
         android:id="@+id/preferencesFragment"
@@ -57,5 +60,24 @@
         android:id="@+id/contactsFragment"
         android:name="com.hit.gymtime.ui.contacts.ContactsFragment"
         android:label="contacts_layout"
-        tools:layout="@layout/contacts_layout" />
+        tools:layout="@layout/contacts_layout" >
+        <action
+            android:id="@+id/action_contactsFragment_to_additemFragment"
+            app:destination="@id/additemFragment" />
+        <action
+            android:id="@+id/action_contactsFragment_to_editItemFragment"
+            app:destination="@id/editItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editItemFragment"
+        android:name="com.hit.gymtime.ui.single_item.EditItemFragment"
+        android:label="edit_item_layout"
+        tools:layout="@layout/edit_item_layout" >
+        <action
+            android:id="@+id/action_editItemFragment_to_allItemsFragment"
+            app:destination="@id/allItemsFragment" />
+        <action
+            android:id="@+id/action_editItemFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
 </navigation>

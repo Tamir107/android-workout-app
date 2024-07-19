@@ -17,6 +17,10 @@ class ItemsViewModel(application: Application) : AndroidViewModel(application) {
 
     val location : LiveData<String> = LocationUpdatesLiveData(application.applicationContext)
 
+    val workoutTypes = arrayOf("Cardio", "Strength", "Flexibility", "Balance")
+
+    val workoutLocations = arrayOf("Private Gym - Holon" , "Crossfit - Holon", "ICON - Holon", "Space - Holon")
+
     val addresses = mapOf("Private Gym - Holon" to "Giv'at HaTahmoshet St 27, Holon",
         "Crossfit - Holon" to "Ha-Melakha St 18, Holon",
         "ICON - Holon" to "Rehov HaMerkava 38, Holon",
@@ -28,9 +32,16 @@ class ItemsViewModel(application: Application) : AndroidViewModel(application) {
     fun setItem(item: Item) {
         _chosenItem.value = item
     }
+
     fun addItem(item: Item){
         viewModelScope.launch {
             repository.addItem(item)
+        }
+    }
+
+    fun updateItem(item: Item) {
+        viewModelScope.launch {
+            repository.updateItem(item)
         }
     }
 

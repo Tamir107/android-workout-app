@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.add_item.AdditemFragment"
+    tools:context=".ui.single_item.EditItemFragment"
     android:layout_marginHorizontal="10dp"
     android:orientation="vertical">
 
@@ -149,8 +149,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:text="Add Workout"
-        android:id="@+id/done_btn">
+        android:text="Save"
+        android:id="@+id/save_btn">
     </Button>
 
 

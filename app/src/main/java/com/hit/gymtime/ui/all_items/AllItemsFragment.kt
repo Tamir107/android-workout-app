@@ -53,7 +53,8 @@ class AllItemsFragment : Fragment(), MenuProvider{
 
             binding.recycler.adapter = ItemAdapter(it, object : ItemAdapter.ItemListener {
                 override fun onItemClicked(index: Int) {
-                    Toast.makeText(requireContext(),"${it[index]}",Toast.LENGTH_SHORT).show()
+                    viewModel.setItem((it[index]))
+                    findNavController().navigate(R.id.action_allItemsFragment_to_editItemFragment)
                 }
 
                 override fun onItemLongClicked(index: Int) {

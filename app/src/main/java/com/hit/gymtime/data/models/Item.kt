@@ -21,6 +21,9 @@ data class Item(
     @ColumnInfo(name = "item_location")
     val location: String?,
 
+    @ColumnInfo(name = "item_partner")
+    val partner: String?,
+
     @ColumnInfo(name = "image")
     val photo: String?
 
@@ -29,6 +32,7 @@ data class Item(
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0
     constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
@@ -45,6 +49,7 @@ data class Item(
         dest.writeString(hour)
         dest.writeString(type)
         dest.writeString(location)
+        dest.writeString(partner)
         dest.writeString(photo)
         dest.writeInt(id)
     }

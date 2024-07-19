@@ -29,6 +29,10 @@ class itemRepository(application: Application) {  //: CoroutineScope {
         //}
     }
 
+    suspend fun updateItem(item: Item){
+        itemDao?.updateItem(item)
+    }
+
     suspend fun deleteItem(item: Item) {
         //launch {
         itemDao?.deleteItem(item)

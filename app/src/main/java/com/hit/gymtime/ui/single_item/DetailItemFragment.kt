@@ -21,10 +21,10 @@ import com.hit.gymtime.databinding.DetailItemLayoutBinding
 import com.hit.gymtime.ui.ItemsViewModel
 
 class DetailItemFragment : Fragment() {
-    var _binding : DetailItemLayoutBinding? = null
+    private var _binding : DetailItemLayoutBinding? = null
 
-    val viewModel: ItemsViewModel by activityViewModels()
-    val binding get() = _binding!!
+    private val viewModel: ItemsViewModel by activityViewModels()
+    private val binding get() = _binding!!
 
     private val locationRequestLauncher : ActivityResultLauncher<String>
     = registerForActivityResult(ActivityResultContracts.RequestPermission()) {

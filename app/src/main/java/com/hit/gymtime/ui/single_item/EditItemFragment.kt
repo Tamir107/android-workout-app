@@ -1,4 +1,4 @@
-package com.hit.gymtime.ui.add_item
+package com.hit.gymtime.ui.single_item
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -16,17 +16,18 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.hit.gymtime.data.models.Item
+import com.bumptech.glide.Glide
 import com.hit.gymtime.R
-import com.hit.gymtime.databinding.AddItemLayoutBinding
+import com.hit.gymtime.data.models.Item
+import com.hit.gymtime.databinding.EditItemLayoutBinding
 import com.hit.gymtime.ui.ItemsViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class AdditemFragment : Fragment(){
+class EditItemFragment : Fragment() {
 
-    private var _binding : AddItemLayoutBinding? = null
+    private var _binding : EditItemLayoutBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel : ItemsViewModel by activityViewModels()
@@ -36,21 +37,24 @@ class AdditemFragment : Fragment(){
         registerForActivityResult(ActivityResultContracts.OpenDocument()){
             binding.resImg.setImageURI(it)
             if (it != null) {
-                requireActivity().contentResolver.takePersistableUriPermission(it,Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                requireActivity().contentResolver.takePersistableUriPermission(it, Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
             imageUri = it
         }
 
     private var selectedWorkoutType: String? = null
     private var selectedWorkoutLocation: String? = null
+
+    private var selectedId : Int = -1
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = AddItemLayoutBinding.inflate(inflater, container, false)
+        _binding = EditItemLayoutBinding.inflate(inflater, container, false)
 
-        binding.doneBtn.setOnClickListener{
+        binding.saveBtn.setOnClickListener{
 
             val item = Item(binding.dateTextview.text.toString(),
                 binding.hourTextview.text.toString(),
@@ -59,9 +63,11 @@ class AdditemFragment : Fragment(){
                 binding.contactTextview.text.toString(),
                 imageUri?.toString())
 
-            viewModel.addItem(item)
+            item.id = selectedId
 
-            findNavController().navigate(R.id.action_additemFragment_to_allItemsFragment)
+            viewModel.updateItem(item)
+
+            findNavController().navigate(R.id.action_editItemFragment_to_allItemsFragment)
         }
 
         binding.imageBtn.setOnClickListener{
@@ -69,13 +75,9 @@ class AdditemFragment : Fragment(){
         }
 
         binding.contactButton.setOnClickListener {
-            val bundle = bundleOf("date" to binding.dateTextview.text.toString(), "hour" to binding.hourTextview.text.toString(), "screen" to "add")
-            findNavController().navigate(R.id.action_additemFragment_to_contactsFragment, bundle)
+            val bundle = bundleOf("date" to binding.dateTextview.text.toString(), "hour" to binding.hourTextview.text.toString(), "screen" to "edit")
+            findNavController().navigate(R.id.action_editItemFragment_to_contactsFragment, bundle)
         }
-
-        binding.contactTextview.text = arguments?.getString("contactName")
-        binding.dateTextview.text = arguments?.getString("date")
-        binding.hourTextview.text = arguments?.getString("hour")
 
         setupDateAndTimePickers()
         setupSpinners()
@@ -85,11 +87,28 @@ class AdditemFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.chosenItem.observe(viewLifecycleOwner) {
+            binding.dateTextview.text = arguments?.getString("date") ?: it.date
+            binding.hourTextview.text = arguments?.getString("hour") ?: it.hour
+            binding.contactTextview.text = arguments?.getString("contactName") ?: it.partner
+            binding.workoutType.setSelection(viewModel.workoutTypes.indexOf(it.type))
+            binding.workoutLocation.setSelection(viewModel.workoutLocations.indexOf(it.location))
+            selectedId = it.id
+
+            if(it.photo == null){
+                binding.resImg.setImageResource(R.drawable.ic_launcher_background)
+                imageUri = null
+            }
+            else{
+                binding.resImg.setImageURI(Uri.parse(it.photo))
+                imageUri = Uri.parse(it.photo)
+            }
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 
     private fun setupDateAndTimePickers() {
@@ -111,11 +130,13 @@ class AdditemFragment : Fragment(){
         }
 
         binding.dateButton.setOnClickListener {
-            DatePickerDialog(requireContext(), dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+            DatePickerDialog(requireContext(), dateSetListener, calendar.get(Calendar.YEAR), calendar.get(
+                Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
         binding.hourButton.setOnClickListener {
-            TimePickerDialog(requireContext(), timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
+            TimePickerDialog(requireContext(), timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(
+                Calendar.MINUTE), true).show()
         }
     }
 
@@ -146,5 +167,4 @@ class AdditemFragment : Fragment(){
             }
         }
     }
-
 }
