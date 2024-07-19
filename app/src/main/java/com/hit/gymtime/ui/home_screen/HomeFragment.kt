@@ -35,7 +35,7 @@ class HomeFragment : Fragment(), MenuProvider {
         }
 
         binding.musicButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_musicFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_contactsFragment)
         }
 
         binding.preferencesBtn.setOnClickListener {

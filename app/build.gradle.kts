@@ -67,6 +67,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("androidx.activity:activity-ktx:1.9.0")
 
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
 
 
 

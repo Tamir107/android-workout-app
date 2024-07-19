@@ -42,20 +42,20 @@
             android:id="@+id/action_homeFragment_to_allItemsFragment"
             app:destination="@id/allItemsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_musicFragment"
-            app:destination="@id/musicFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_preferencesFragment"
             app:destination="@id/preferencesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/musicFragment"
-        android:name="com.hit.gymtime.ui.music.MusicFragment"
-        android:label="music_layout"
-        tools:layout="@layout/music_layout" />
     <fragment
         android:id="@+id/preferencesFragment"
         android:name="com.hit.gymtime.ui.user_preferences.PreferencesFragment"
         android:label="preferences_layout"
         tools:layout="@layout/preferences_layout" />
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.hit.gymtime.ui.contacts.ContactsFragment"
+        android:label="contacts_layout"
+        tools:layout="@layout/contacts_layout" />
 </navigation>
