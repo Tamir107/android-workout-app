@@ -48,14 +48,9 @@
             android:id="@+id/action_homeFragment_to_allItemsFragment"
             app:destination="@id/allItemsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_preferencesFragment"
-            app:destination="@id/preferencesFragment" />
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/preferencesFragment"
-        android:name="com.hit.gymtime.ui.user_preferences.PreferencesFragment"
-        android:label="preferences_layout"
-        tools:layout="@layout/preferences_layout" />
     <fragment
         android:id="@+id/contactsFragment"
         android:name="com.hit.gymtime.ui.contacts.ContactsFragment"
@@ -86,4 +81,8 @@
             android:id="@+id/action_editItemFragment_to_contactsFragment"
             app:destination="@id/contactsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.hit.gymtime.ui.user_preferences.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

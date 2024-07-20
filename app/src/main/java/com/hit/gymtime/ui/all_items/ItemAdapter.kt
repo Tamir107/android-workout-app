@@ -32,10 +32,9 @@ class ItemAdapter(val items:List<Item>, val callBack : ItemListener) : RecyclerV
         }
 
         fun bind(item: Item){
-            binding.itemDate.text = "${item.date} ${item.hour}"
-            binding.itemHour.text = item.partner
-            binding.itemType.text = item.type
-            binding.itemLocation.text = item.location
+            binding.itemDateAndHour.text = "${item.date} || ${item.hour}"
+            binding.itemPartner.text = if (item.partner == "") "Alone" else item.partner
+            binding.itemLocationType.text = "${item.location} || ${item.type}"
             Glide.with(binding.root).load(item.photo).circleCrop().into(binding.itemImg)
         }
 

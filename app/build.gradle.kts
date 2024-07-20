@@ -69,6 +69,6 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
 
-
+    implementation("androidx.preference:preference:1.2.1")
 
 }

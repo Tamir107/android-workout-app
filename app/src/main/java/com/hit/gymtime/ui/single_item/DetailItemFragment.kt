@@ -44,6 +44,8 @@ class DetailItemFragment : Fragment() {
         }
     }
 
+    private var gymAddress : String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,12 +67,13 @@ class DetailItemFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.chosenItem.observe(viewLifecycleOwner){
-            binding.itemDate.text = it.date
-            binding.itemHour.text = it.hour
-            binding.itemType.text = it.type
-            binding.itemLocation.text = it.location
-            binding.itemAddress.text = viewModel.addresses[it.location]
-            Glide.with(requireContext()).load(it.photo).circleCrop().into(binding.itemImg)
+            gymAddress = viewModel.addresses[it.location]
+            val partnerInfo = if(it.partner == "") "" else " with your partner, ${it.partner}"
+            binding.itemDescription.text = "Workout session scheduled on ${it.date}, at ${it.hour}" +
+                    "$partnerInfo.\n\nThe gym is located at $gymAddress . \n\nEnjoy your workout! " +
+                    "Remember, every step brings you closer to your goal."
+
+            Glide.with(requireContext()).load(it.photo).into(binding.itemImg)
         }
 
     }
@@ -82,7 +85,7 @@ class DetailItemFragment : Fragment() {
 
     private fun getLocationUpdates() {
         viewModel.location.observe(viewLifecycleOwner) {
-            val uri = Uri.parse("https://www.google.com/maps/dir/?api=1&origin=$it&destination=${Uri.encode(binding.itemLocation.text.toString())}&travelmode=driving")
+            val uri = Uri.parse("https://www.google.com/maps/dir/?api=1&origin=$it&destination=${Uri.encode(gymAddress)}&travelmode=driving")
             val intent = Intent(Intent.ACTION_VIEW, uri)
             intent.setPackage("com.google.android.apps.maps")
             startActivity(intent)

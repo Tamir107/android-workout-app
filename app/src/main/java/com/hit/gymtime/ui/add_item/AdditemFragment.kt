@@ -2,6 +2,7 @@ package com.hit.gymtime.ui.add_item
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,12 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.hit.gymtime.data.models.Item
 import com.hit.gymtime.R
 import com.hit.gymtime.databinding.AddItemLayoutBinding
@@ -43,6 +46,7 @@ class AdditemFragment : Fragment(){
 
     private var selectedWorkoutType: String? = null
     private var selectedWorkoutLocation: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,17 +55,18 @@ class AdditemFragment : Fragment(){
         _binding = AddItemLayoutBinding.inflate(inflater, container, false)
 
         binding.doneBtn.setOnClickListener{
+            if(validateInputs()){
+                val item = Item(binding.dateTextview.text.toString(),
+                    binding.hourTextview.text.toString(),
+                    selectedWorkoutType,
+                    selectedWorkoutLocation,
+                    binding.contactTextview.text.toString(),
+                    imageUri?.toString())
 
-            val item = Item(binding.dateTextview.text.toString(),
-                binding.hourTextview.text.toString(),
-                selectedWorkoutType,
-                selectedWorkoutLocation,
-                binding.contactTextview.text.toString(),
-                imageUri?.toString())
+                viewModel.addItem(item)
 
-            viewModel.addItem(item)
-
-            findNavController().navigate(R.id.action_additemFragment_to_allItemsFragment)
+                findNavController().navigate(R.id.action_additemFragment_to_allItemsFragment)
+            }
         }
 
         binding.imageBtn.setOnClickListener{
@@ -76,6 +81,9 @@ class AdditemFragment : Fragment(){
         binding.contactTextview.text = arguments?.getString("contactName")
         binding.dateTextview.text = arguments?.getString("date")
         binding.hourTextview.text = arguments?.getString("hour")
+
+        val selectedCities = getSelectedCities(requireContext())
+        viewModel.updateGyms(selectedCities.toList())
 
         setupDateAndTimePickers()
         setupSpinners()
@@ -122,7 +130,13 @@ class AdditemFragment : Fragment(){
     private fun setupSpinners() {
 
         binding.workoutType.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, viewModel.workoutTypes)
-        binding.workoutLocation.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, viewModel.workoutLocations)
+        binding.workoutLocation.adapter = viewModel.gyms.value?.let {
+            ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                it.toList()
+            )
+        }
 
         binding.workoutType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -136,13 +150,44 @@ class AdditemFragment : Fragment(){
 
         binding.workoutLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                selectedWorkoutLocation = viewModel.workoutLocations[p2]
+                selectedWorkoutLocation = viewModel.gyms.value?.let {
+                    it[p2]
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 selectedWorkoutLocation = null
             }
         }
+    }
+
+    private fun getSelectedCities(context: Context): Set<String> {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        return prefs.getStringSet("city_preference", emptySet()) ?: emptySet()
+    }
+
+    private fun validateInputs(): Boolean {
+        if (binding.dateTextview.text.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "Please select a date", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (binding.hourTextview.text.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "Please select an hour", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (selectedWorkoutType.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "Please select a workout type", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (selectedWorkoutLocation.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "Please select a workout location", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (imageUri == null) {
+            Toast.makeText(requireContext(), "Please select an image", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
     }
 
 }

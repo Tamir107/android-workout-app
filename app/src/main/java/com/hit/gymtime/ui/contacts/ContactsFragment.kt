@@ -76,9 +76,7 @@ class ContactsFragment : Fragment() {
 
     private fun initRecycler() {
         _adapter = MyContactsAdapter(listOf()) {
-            Toast.makeText(requireContext(),it.toString(), Toast.LENGTH_SHORT).show()
             val bundle = bundleOf("contactName" to it.name, "date" to arguments?.getString("date"), "hour" to arguments?.getString("hour"))
-            Log.d("FragmentC", "Source Fragment: ${arguments?.getString("screen")}")
             when(arguments?.getString("screen")){
                 "edit" -> {
                     findNavController().navigate(R.id.action_contactsFragment_to_editItemFragment,bundle)

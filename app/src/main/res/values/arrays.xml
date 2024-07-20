@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="theme_names">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System Default</item>
+    </string-array>
+    <string-array name="theme_values">
+        <item>light</item>
+        <item>dark</item>
+        <item>system</item>
+    </string-array>
+    <string-array name="city_names">
+        <item>Tel Aviv</item>
+        <item>Holon</item>
+        <item>Bat Yam</item>
+    </string-array>
+    <string-array name="city_values">
+        <item>tel_aviv</item>
+        <item>holon</item>
+        <item>bat_yam</item>
+    </string-array>
+</resources>

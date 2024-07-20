@@ -23,43 +23,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginLeft="20dp"
-            android:gravity="center">
+            android:layout_marginLeft="20dp">
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Main item title"
-                android:textSize="18sp"
+                android:layout_height="match_parent"
+                android:text="Date || Hour"
+                android:gravity="center"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:id="@+id/item_date">
+                android:layout_weight="0.5"
+                android:id="@+id/item_date_and_hour">
             </TextView>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Main item description"
-                android:textSize="10sp"
-                android:id="@+id/item_hour">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Partner"
+                android:textSize="14sp"
+                android:layout_weight="0.5"
+                android:id="@+id/item_partner">
             </TextView>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Main item description"
-                android:textSize="10sp"
-                android:id="@+id/item_type">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="0.5"
+                android:text="Location || Type"
+                android:textSize="14sp"
+                android:id="@+id/item_location_type">
             </TextView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Main item description"
-                android:textSize="10sp"
-                android:id="@+id/item_location">
-            </TextView>
         </LinearLayout>
 
     </LinearLayout>

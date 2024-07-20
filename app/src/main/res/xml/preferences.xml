@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.user_preferences.SettingsFragment">
+
+    <PreferenceCategory
+            app:title="Appearance">
+        <ListPreference
+            app:key="theme_preference"
+            app:title="Select Theme"
+            app:summary="Select the theme you want in your app"
+            app:entries="@array/theme_names"
+            app:entryValues="@array/theme_values"
+            app:defaultValue="light"
+            app:icon="@drawable/ic_launcher_background"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="Location">
+        <com.hit.gymtime.ui.user_preferences.MinimumMultiSelectListPreference
+            app:key="city_preference"
+            app:title="Cities"
+            app:summary="Select the cities you want in your app"
+            app:entries="@array/city_names"
+            app:entryValues="@array/city_values"
+            app:defaultValue="@array/city_values"
+            app:icon="@drawable/circle_shape"/>
+    </PreferenceCategory>
+</PreferenceScreen>

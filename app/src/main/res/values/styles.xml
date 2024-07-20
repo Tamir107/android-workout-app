@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme -->
+    <style name="Theme.MyApp" parent="Theme.MaterialComponents.DayNight">
+        <!-- Customize your theme here -->
+    </style>
+
+    <style name="Theme.MyApp.Light" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your light theme here -->
+    </style>
+
+    <style name="Theme.MyApp.Dark" parent="Theme.MaterialComponents.DayNight">
+        <!-- Customize your dark theme here -->
+    </style>
+
+</resources>

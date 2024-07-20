@@ -35,7 +35,7 @@ class HomeFragment : Fragment(), MenuProvider {
         }
 
         binding.preferencesBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_preferencesFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
         }
 
         return binding.root

@@ -2,6 +2,7 @@ package com.hit.gymtime.ui.single_item
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +17,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.bumptech.glide.Glide
 import com.hit.gymtime.R
 import com.hit.gymtime.data.models.Item
@@ -79,6 +81,9 @@ class EditItemFragment : Fragment() {
             findNavController().navigate(R.id.action_editItemFragment_to_contactsFragment, bundle)
         }
 
+        val selectedCities = getSelectedCities(requireContext())
+        viewModel.updateGyms(selectedCities.toList())
+
         setupDateAndTimePickers()
         setupSpinners()
 
@@ -93,7 +98,10 @@ class EditItemFragment : Fragment() {
             binding.hourTextview.text = arguments?.getString("hour") ?: it.hour
             binding.contactTextview.text = arguments?.getString("contactName") ?: it.partner
             binding.workoutType.setSelection(viewModel.workoutTypes.indexOf(it.type))
-            binding.workoutLocation.setSelection(viewModel.workoutLocations.indexOf(it.location))
+            it.location?.let { it1 ->
+                viewModel.gyms.value?.indexOf(it1)
+            }?.let { it2 -> binding.workoutLocation.setSelection(it2) }
+
             selectedId = it.id
 
             if(it.photo == null){
@@ -141,11 +149,14 @@ class EditItemFragment : Fragment() {
     }
 
     private fun setupSpinners() {
-//        val workoutTypes = arrayOf("Cardio", "Strength", "Flexibility", "Balance")
-//        val workoutLocations = arrayOf("Private Gym - Holon" , "Crossfit - Holon", "ICON - Holon", "Space - Holon")
-
         binding.workoutType.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, viewModel.workoutTypes)
-        binding.workoutLocation.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, viewModel.workoutLocations)
+        binding.workoutLocation.adapter = viewModel.gyms.value?.let {
+            ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                it.toList()
+            )
+        }
 
         binding.workoutType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -159,12 +170,19 @@ class EditItemFragment : Fragment() {
 
         binding.workoutLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                selectedWorkoutLocation = viewModel.workoutLocations[p2]
+                selectedWorkoutLocation = viewModel.gyms.value?.let {
+                    it[p2]
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 selectedWorkoutLocation = null
             }
         }
+    }
+
+    private fun getSelectedCities(context: Context): Set<String> {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        return prefs.getStringSet("city_preference", emptySet()) ?: emptySet()
     }
 }
