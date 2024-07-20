@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
@@ -97,10 +99,12 @@ class EditItemFragment : Fragment() {
             binding.dateTextview.text = arguments?.getString("date") ?: it.date
             binding.hourTextview.text = arguments?.getString("hour") ?: it.hour
             binding.contactTextview.text = arguments?.getString("contactName") ?: it.partner
-            binding.workoutType.setSelection(viewModel.workoutTypes.indexOf(it.type))
-            it.location?.let { it1 ->
-                viewModel.gyms.value?.indexOf(it1)
-            }?.let { it2 -> binding.workoutLocation.setSelection(it2) }
+
+            binding.workoutType.setText(it.type,false)
+            binding.workoutLocation.setText(it.location,false)
+
+            selectedWorkoutType = it.type
+            selectedWorkoutLocation = it.location
 
             selectedId = it.id
 
@@ -149,36 +153,36 @@ class EditItemFragment : Fragment() {
     }
 
     private fun setupSpinners() {
-        binding.workoutType.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, viewModel.workoutTypes)
-        binding.workoutLocation.adapter = viewModel.gyms.value?.let {
+
+        binding.workoutType.setAdapter(
             ArrayAdapter(
                 requireContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                it.toList()
+                R.layout.drop_down_item,
+                viewModel.workoutTypes
             )
+        )
+
+        viewModel.gyms.observe(viewLifecycleOwner) { gyms ->
+            val adapter = ArrayAdapter(
+                requireContext(),
+                R.layout.drop_down_item,
+                gyms
+            )
+            binding.workoutLocation.setAdapter(adapter)
         }
 
-        binding.workoutType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        binding.workoutType.onItemClickListener =
+            AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
                 selectedWorkoutType = viewModel.workoutTypes[p2]
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                selectedWorkoutType = null
-            }
-        }
-
-        binding.workoutLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        binding.workoutLocation.onItemClickListener =
+            AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
                 selectedWorkoutLocation = viewModel.gyms.value?.let {
                     it[p2]
                 }
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                selectedWorkoutLocation = null
-            }
-        }
     }
 
     private fun getSelectedCities(context: Context): Set<String> {

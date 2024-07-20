@@ -85,35 +85,58 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Workout Type:"
-        android:textStyle="bold"
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Workout Type:"-->
+<!--        android:textStyle="bold"-->
 
-        android:layout_marginTop="30dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:textAppearance="?android:attr/textAppearanceMedium" />-->
 
-    <Spinner
-        android:id="@+id/workout_type"
+<!--    <Spinner-->
+<!--        android:id="@+id/workout_type"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="5dp"/>-->
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="15dp"
+        android:hint="Workout Type"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Workout Location:"
-        android:textStyle="bold"
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/workout_type"
+            android:inputType="none">
 
-        android:layout_marginTop="30dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        </AutoCompleteTextView>
 
-    <Spinner
-        android:id="@+id/workout_location"
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"/>
+        android:hint="Workout Location"
+        android:layout_marginTop="15dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/workout_location"
+            android:inputType="none">
+
+        </AutoCompleteTextView>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -136,7 +159,7 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
 
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/gym_time"
             android:id="@+id/res_img">
         </ImageView>
 

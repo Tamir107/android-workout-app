@@ -27,19 +27,22 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class AdditemFragment : Fragment(){
+class AdditemFragment : Fragment() {
 
-    private var _binding : AddItemLayoutBinding? = null
+    private var _binding: AddItemLayoutBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel : ItemsViewModel by activityViewModels()
+    private val viewModel: ItemsViewModel by activityViewModels()
 
     private var imageUri: Uri? = null
-    val pickImageLauncher : ActivityResultLauncher<Array<String>> =
-        registerForActivityResult(ActivityResultContracts.OpenDocument()){
+    val pickImageLauncher: ActivityResultLauncher<Array<String>> =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) {
             binding.resImg.setImageURI(it)
             if (it != null) {
-                requireActivity().contentResolver.takePersistableUriPermission(it,Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                requireActivity().contentResolver.takePersistableUriPermission(
+                    it,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
             }
             imageUri = it
         }
@@ -54,14 +57,16 @@ class AdditemFragment : Fragment(){
     ): View? {
         _binding = AddItemLayoutBinding.inflate(inflater, container, false)
 
-        binding.doneBtn.setOnClickListener{
-            if(validateInputs()){
-                val item = Item(binding.dateTextview.text.toString(),
+        binding.doneBtn.setOnClickListener {
+            if (validateInputs()) {
+                val item = Item(
+                    binding.dateTextview.text.toString(),
                     binding.hourTextview.text.toString(),
                     selectedWorkoutType,
                     selectedWorkoutLocation,
                     binding.contactTextview.text.toString(),
-                    imageUri?.toString())
+                    imageUri?.toString()
+                )
 
                 viewModel.addItem(item)
 
@@ -69,12 +74,16 @@ class AdditemFragment : Fragment(){
             }
         }
 
-        binding.imageBtn.setOnClickListener{
+        binding.imageBtn.setOnClickListener {
             pickImageLauncher.launch(arrayOf("image/*"))
         }
 
         binding.contactButton.setOnClickListener {
-            val bundle = bundleOf("date" to binding.dateTextview.text.toString(), "hour" to binding.hourTextview.text.toString(), "screen" to "add")
+            val bundle = bundleOf(
+                "date" to binding.dateTextview.text.toString(),
+                "hour" to binding.hourTextview.text.toString(),
+                "screen" to "add"
+            )
             findNavController().navigate(R.id.action_additemFragment_to_contactsFragment, bundle)
         }
 
@@ -119,46 +128,55 @@ class AdditemFragment : Fragment(){
         }
 
         binding.dateButton.setOnClickListener {
-            DatePickerDialog(requireContext(), dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+            DatePickerDialog(
+                requireContext(),
+                dateSetListener,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
 
         binding.hourButton.setOnClickListener {
-            TimePickerDialog(requireContext(), timeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
+            TimePickerDialog(
+                requireContext(),
+                timeSetListener,
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                true
+            ).show()
         }
     }
 
     private fun setupSpinners() {
 
-        binding.workoutType.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, viewModel.workoutTypes)
-        binding.workoutLocation.adapter = viewModel.gyms.value?.let {
+        binding.workoutType.setAdapter(
             ArrayAdapter(
                 requireContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                it.toList()
+                R.layout.drop_down_item,
+                viewModel.workoutTypes
             )
+        )
+        viewModel.gyms.observe(viewLifecycleOwner) { gyms ->
+            val adapter = ArrayAdapter(
+                requireContext(),
+                R.layout.drop_down_item,
+                gyms
+            )
+            binding.workoutLocation.setAdapter(adapter)
         }
 
-        binding.workoutType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        binding.workoutType.onItemClickListener =
+            AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
                 selectedWorkoutType = viewModel.workoutTypes[p2]
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                selectedWorkoutType = null
-            }
-        }
-
-        binding.workoutLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        binding.workoutLocation.onItemClickListener =
+            AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
                 selectedWorkoutLocation = viewModel.gyms.value?.let {
                     it[p2]
                 }
             }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                selectedWorkoutLocation = null
-            }
-        }
     }
 
     private fun getSelectedCities(context: Context): Set<String> {
@@ -176,17 +194,16 @@ class AdditemFragment : Fragment(){
             return false
         }
         if (selectedWorkoutType.isNullOrEmpty()) {
-            Toast.makeText(requireContext(), "Please select a workout type", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Please select a workout type", Toast.LENGTH_SHORT)
+                .show()
             return false
         }
         if (selectedWorkoutLocation.isNullOrEmpty()) {
-            Toast.makeText(requireContext(), "Please select a workout location", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Please select a workout location", Toast.LENGTH_SHORT)
+                .show()
             return false
         }
-        if (imageUri == null) {
-            Toast.makeText(requireContext(), "Please select an image", Toast.LENGTH_SHORT).show()
-            return false
-        }
+
         return true
     }
 
