@@ -26,6 +26,8 @@ class ItemsViewModel(application: Application) : AndroidViewModel(application) {
         "ICON - Holon" to "Rehov HaMerkava 38, Holon",
         "Space - Holon" to "Harokmim St 26, Holon")
 
+    val cities = arrayOf("Holon", "Rishon Lezion")
+
     private val _chosenItem = MutableLiveData<Item>()
     val chosenItem : LiveData<Item> get() = _chosenItem
 

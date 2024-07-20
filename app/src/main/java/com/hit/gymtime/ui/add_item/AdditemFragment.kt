@@ -120,8 +120,6 @@ class AdditemFragment : Fragment(){
     }
 
     private fun setupSpinners() {
-//        val workoutTypes = arrayOf("Cardio", "Strength", "Flexibility", "Balance")
-//        val workoutLocations = arrayOf("Private Gym - Holon" , "Crossfit - Holon", "ICON - Holon", "Space - Holon")
 
         binding.workoutType.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, viewModel.workoutTypes)
         binding.workoutLocation.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, viewModel.workoutLocations)

@@ -63,10 +63,14 @@
         tools:layout="@layout/contacts_layout" >
         <action
             android:id="@+id/action_contactsFragment_to_additemFragment"
-            app:destination="@id/additemFragment" />
+            app:destination="@id/additemFragment"
+            app:popUpTo="@id/additemFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_contactsFragment_to_editItemFragment"
-            app:destination="@id/editItemFragment" />
+            app:destination="@id/editItemFragment"
+            app:popUpTo="@id/editItemFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/editItemFragment"
