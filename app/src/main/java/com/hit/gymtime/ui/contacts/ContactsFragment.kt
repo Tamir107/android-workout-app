@@ -1,8 +1,12 @@
 package com.hit.gymtime.ui.contacts
 
 import android.Manifest
+import android.app.AlertDialog
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,8 +32,17 @@ class ContactsFragment : Fragment() {
     private lateinit var _adapter: MyContactsAdapter
 
     private val contactsPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-        if(it)
+        if(it) {
             getContacts()
+        }
+        else {
+            if(!ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.READ_CONTACTS))
+            {
+                showPermissionDeniedDialog()
+            } else {
+                showPermissionRationaleDialog()
+            }
+        }
     }
 
     private val viewModel : ContactsViewModel by viewModels()
@@ -97,5 +110,40 @@ class ContactsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun showPermissionRationaleDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Permission Required")
+            .setMessage("Contacts access is required for this feature. Please grant the permission.")
+            .setPositiveButton("Grant") { dialog, _ ->
+                dialog.dismiss()
+                contactsPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun showPermissionDeniedDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Permission Denied")
+            .setMessage("Contacts access has been permanently denied. Please enable it in the app settings.")
+            .setPositiveButton("Open Settings") { dialog, _ ->
+                dialog.dismiss()
+                openAppSettings()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun openAppSettings() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+            data = Uri.fromParts("package", requireContext().packageName, null)
+        }
+        startActivity(intent)
     }
 }

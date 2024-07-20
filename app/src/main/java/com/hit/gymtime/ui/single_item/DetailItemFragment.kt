@@ -1,10 +1,12 @@
 package com.hit.gymtime.ui.single_item
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +14,13 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+
 import com.hit.gymtime.databinding.DetailItemLayoutBinding
 import com.hit.gymtime.ui.ItemsViewModel
 
@@ -30,6 +34,13 @@ class DetailItemFragment : Fragment() {
     = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
         if(it){
             getLocationUpdates()
+        } else {
+            if(!ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION))
+            {
+                showPermissionDeniedDialog()
+            } else {
+                showPermissionRationaleDialog()
+            }
         }
     }
 
@@ -76,6 +87,41 @@ class DetailItemFragment : Fragment() {
             intent.setPackage("com.google.android.apps.maps")
             startActivity(intent)
         }
+    }
+
+    private fun showPermissionRationaleDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Permission Required")
+            .setMessage("Location access is required for this feature. Please grant the permission.")
+            .setPositiveButton("Grant") { dialog, _ ->
+                dialog.dismiss()
+                locationRequestLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun showPermissionDeniedDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Permission Denied")
+            .setMessage("Location access has been permanently denied. Please enable it in the app settings.")
+            .setPositiveButton("Open Settings") { dialog, _ ->
+                dialog.dismiss()
+                openAppSettings()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun openAppSettings() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+            data = Uri.fromParts("package", requireContext().packageName, null)
+        }
+        startActivity(intent)
     }
 }
 

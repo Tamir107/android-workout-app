@@ -75,7 +75,9 @@
         tools:layout="@layout/edit_item_layout" >
         <action
             android:id="@+id/action_editItemFragment_to_allItemsFragment"
-            app:destination="@id/allItemsFragment" />
+            app:destination="@id/allItemsFragment"
+            app:popUpTo="@id/allItemsFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_editItemFragment_to_contactsFragment"
             app:destination="@id/contactsFragment" />

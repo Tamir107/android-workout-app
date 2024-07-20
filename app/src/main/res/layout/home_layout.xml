@@ -16,14 +16,6 @@
         android:text="My Workouts" />
 
     <Button
-        android:id="@+id/music_button"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="35dp"
-        android:layout_marginHorizontal="20dp"
-        android:text="Play music" />
-
-    <Button
         android:id="@+id/preferences_btn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
