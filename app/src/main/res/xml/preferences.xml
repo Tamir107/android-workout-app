@@ -5,11 +5,11 @@
     tools:context=".ui.user_preferences.SettingsFragment">
 
     <PreferenceCategory
-            app:title="Appearance">
+            app:title="@string/appearance">
         <ListPreference
             app:key="theme_preference"
-            app:title="Select Theme"
-            app:summary="Select the theme you want in your app"
+            app:title="@string/select_theme"
+            app:summary="@string/select_the_theme_you_want_in_your_app"
             app:entries="@array/theme_names"
             app:entryValues="@array/theme_values"
             app:defaultValue="light"
@@ -17,11 +17,11 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="Location">
+        app:title="@string/location">
         <com.hit.gymtime.ui.user_preferences.MinimumMultiSelectListPreference
             app:key="city_preference"
-            app:title="Cities"
-            app:summary="Select the cities you want in your app"
+            app:title="@string/cities"
+            app:summary="@string/select_the_cities_you_want_in_your_app"
             app:entries="@array/city_names"
             app:entryValues="@array/city_values"
             app:defaultValue="@array/city_values"

@@ -187,20 +187,24 @@ class AdditemFragment : Fragment() {
 
     private fun validateInputs(): Boolean {
         if (binding.dateTextview.text.isNullOrEmpty()) {
-            Toast.makeText(requireContext(), "Please select a date", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.please_select_a_date), Toast.LENGTH_SHORT).show()
             return false
         }
         if (binding.hourTextview.text.isNullOrEmpty()) {
-            Toast.makeText(requireContext(), "Please select an hour", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                getString(R.string.please_select_an_hour), Toast.LENGTH_SHORT).show()
             return false
         }
         if (selectedWorkoutType.isNullOrEmpty()) {
-            Toast.makeText(requireContext(), "Please select a workout type", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(),
+                getString(R.string.please_select_a_workout_type), Toast.LENGTH_SHORT)
                 .show()
             return false
         }
         if (selectedWorkoutLocation.isNullOrEmpty()) {
-            Toast.makeText(requireContext(), "Please select a workout location", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(),
+                getString(R.string.please_select_a_workout_location), Toast.LENGTH_SHORT)
                 .show()
             return false
         }

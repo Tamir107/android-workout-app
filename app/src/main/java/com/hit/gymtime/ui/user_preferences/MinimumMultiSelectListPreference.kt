@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.widget.Toast
 import androidx.preference.MultiSelectListPreference
 import androidx.preference.Preference
+import com.hit.gymtime.R
 
 
 class MinimumMultiSelectListPreference(
@@ -25,7 +26,8 @@ class MinimumMultiSelectListPreference(
         return if (values.size >= MINIMUM_SELECTION) {
             true
         } else {
-            Toast.makeText(context, "Please choose at least one city", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,
+                context.getString(R.string.please_choose_at_least_one_city), Toast.LENGTH_SHORT).show()
             false
         }
     }

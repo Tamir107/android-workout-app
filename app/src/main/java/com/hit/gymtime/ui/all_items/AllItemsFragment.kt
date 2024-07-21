@@ -100,10 +100,11 @@ class AllItemsFragment : Fragment(), MenuProvider{
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem.itemId == R.id.action_delete){
             val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Confirm delete").setMessage("Are you sure you want to delete all items?").
-            setPositiveButton("Yes"){
+            builder.setTitle(getString(R.string.confirm_delete)).setMessage(getString(R.string.are_you_sure_you_want_to_delete_all_items)).
+            setPositiveButton(getString(R.string.yes)){
                     p0,p1 -> viewModel.deleteAll()
-                Toast.makeText(requireContext(),"items deleted",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),
+                    getString(R.string.items_deleted),Toast.LENGTH_SHORT).show()
             }.show()
         }
         return false

@@ -12,12 +12,24 @@
         tools:layout="@layout/all_items_layout" >
         <action
             android:id="@+id/action_allItemsFragment_to_additemFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             app:destination="@id/additemFragment" />
         <action
             android:id="@+id/action_allItemsFragment_to_detailItemFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             app:destination="@id/detailItemFragment" />
         <action
             android:id="@+id/action_allItemsFragment_to_editItemFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             app:destination="@id/editItemFragment" />
     </fragment>
     <fragment
@@ -32,6 +44,8 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_additemFragment_to_contactsFragment"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             app:destination="@id/contactsFragment" />
     </fragment>
     <fragment
@@ -46,9 +60,17 @@
         tools:layout="@layout/home_layout" >
         <action
             android:id="@+id/action_homeFragment_to_allItemsFragment"
-            app:destination="@id/allItemsFragment" />
+            app:destination="@id/allItemsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
             app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
@@ -79,6 +101,8 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_editItemFragment_to_contactsFragment"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             app:destination="@id/contactsFragment" />
     </fragment>
     <fragment

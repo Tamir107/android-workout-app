@@ -10,8 +10,6 @@ import com.hit.gymtime.R
 
 class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
 
-    //late init var binding : ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         applyTheme();

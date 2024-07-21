@@ -1,5 +1,6 @@
 package com.hit.gymtime.ui.all_items
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,9 +33,15 @@ class ItemAdapter(val items:List<Item>, val callBack : ItemListener) : RecyclerV
             return false
         }
 
-        fun bind(item: Item){
+        fun bind(item: Item, context: Context){
             binding.itemDateAndHour.text = "${item.date} || ${item.hour}"
-            binding.itemPartner.text = if (item.partner == "") "Alone" else item.partner
+
+             if (item.partner == "") {
+                 binding.itemPartner.text = context.getString(R.string.alone)
+             } else {
+                binding.itemPartner.text = item.partner
+            }
+
             binding.itemLocationType.text = "${item.location} || ${item.type}"
             if(item.photo == null) {
                 Glide.with(binding.root).load(R.drawable.gym_time).circleCrop().into(binding.itemImg)
@@ -53,7 +60,7 @@ class ItemAdapter(val items:List<Item>, val callBack : ItemListener) : RecyclerV
         ItemViewHolder(ItemLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false))
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) =
-        holder.bind(items[position])
+        holder.bind(items[position], holder.itemView.context)
 
     override fun getItemCount() =
         items.size

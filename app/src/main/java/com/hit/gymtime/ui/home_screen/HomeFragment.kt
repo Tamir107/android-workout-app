@@ -54,8 +54,8 @@ class HomeFragment : Fragment(), MenuProvider {
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem.itemId == R.id.action_info){
             val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("About This App").setMessage("This app provides information about [your app's functionality].").
-            setPositiveButton("OK", null).show()
+            builder.setTitle(getString(R.string.about_this_app)).setMessage(getString(R.string.app_info)).
+            setPositiveButton(getString(R.string.ok), null).show()
         }
         return false
     }

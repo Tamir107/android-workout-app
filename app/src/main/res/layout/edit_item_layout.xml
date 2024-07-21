@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Select Date"/>
+            android:text="@string/select_date"/>
 
         <TextView
             android:id="@+id/date_textview"
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Select Hour"/>
+            android:text="@string/select_hour"/>
 
         <TextView
             android:id="@+id/hour_textview"
@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Select Partner"/>
+            android:text="@string/select_partner"/>
 
         <TextView
             android:id="@+id/contact_textview"
@@ -89,7 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="Workout Type"
+        android:hint="@string/workout_type"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
 
         <AutoCompleteTextView
@@ -107,7 +107,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Workout Location"
+        android:hint="@string/workout_location"
         android:layout_marginTop="15dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
 
@@ -135,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginEnd="50dp"
-            android:text="Pick image"
+            android:text="@string/pick_image"
             android:id="@+id/image_btn">
         </Button>
 
@@ -156,7 +156,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:text="Save"
+        android:text="@string/save"
         android:id="@+id/save_btn">
     </Button>
 

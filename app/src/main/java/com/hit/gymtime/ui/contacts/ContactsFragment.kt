@@ -112,13 +112,13 @@ class ContactsFragment : Fragment() {
 
     private fun showPermissionRationaleDialog() {
         AlertDialog.Builder(requireContext())
-            .setTitle("Permission Required")
-            .setMessage("Contacts access is required for this feature. Please grant the permission.")
-            .setPositiveButton("Grant") { dialog, _ ->
+            .setTitle(getString(R.string.permission_required))
+            .setMessage(getString(R.string.contacts_access_is_required_for_this_feature_please_grant_the_permission))
+            .setPositiveButton(getString(R.string.grant)) { dialog, _ ->
                 dialog.dismiss()
                 contactsPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()
@@ -126,13 +126,13 @@ class ContactsFragment : Fragment() {
 
     private fun showPermissionDeniedDialog() {
         AlertDialog.Builder(requireContext())
-            .setTitle("Permission Denied")
-            .setMessage("Contacts access has been permanently denied. Please enable it in the app settings.")
-            .setPositiveButton("Open Settings") { dialog, _ ->
+            .setTitle(getString(R.string.permission_denied))
+            .setMessage(getString(R.string.contacts_access_has_been_permanently_denied_please_enable_it_in_the_app_settings))
+            .setPositiveButton(getString(R.string.open_settings)) { dialog, _ ->
                 dialog.dismiss()
                 openAppSettings()
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()

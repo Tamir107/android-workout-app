@@ -38,8 +38,6 @@ class LocationUpdatesLiveData(context: Context) : LiveData<String>() {
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
             p0.lastLocation?.let {
-                //postValue("${it.latitude},${it.longitude}")
-
                 scope.launch {
                     val addresses = geocoder.getFromLocation(it.latitude,it.longitude,1)
                     postValue(addresses?.get(0)?.getAddressLine(0))

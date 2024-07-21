@@ -64,17 +64,3 @@ data class Item(
         }
     }
 }
-
-
-
-//object ItemManager{
-//    val items: MutableList<Item> = mutableListOf()
-//
-//    fun add(item: Item){
-//        items.add(item)
-//    }
-//
-//    fun remove(index:Int){
-//        items.removeAt(index)
-//    }
-//}
