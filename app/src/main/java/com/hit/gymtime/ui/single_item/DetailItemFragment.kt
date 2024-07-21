@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.hit.gymtime.R
 
 import com.hit.gymtime.databinding.DetailItemLayoutBinding
 import com.hit.gymtime.ui.ItemsViewModel
@@ -73,7 +74,12 @@ class DetailItemFragment : Fragment() {
                     "$partnerInfo.\n\nThe gym is located at $gymAddress . \n\nEnjoy your workout! " +
                     "Remember, every step brings you closer to your goal."
 
-            Glide.with(requireContext()).load(it.photo).into(binding.itemImg)
+            if (it.photo == null) {
+                Glide.with(requireContext()).load(R.drawable.motivation).into(binding.itemImg)
+            } else {
+                Glide.with(requireContext()).load(it.photo).into(binding.itemImg)
+            }
+
         }
 
     }

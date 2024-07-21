@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme -->
-    <style name="Theme.MyApp" parent="Theme.MaterialComponents.DayNight">
-        <!-- Customize your theme here -->
-    </style>
-
     <style name="Theme.MyApp.Light" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your light theme here -->
+<!--        <item name="colorPrimary">@color/my_pink</item>&ndash;&gt;-->
+        <item name="colorPrimary">@color/my_black</item>-->
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/my_black</item>
+        <item name="colorAccent">#0C0C0C</item>
+        <item name="android:windowBackground">#B5B3B3</item>
     </style>
 
     <style name="Theme.MyApp.Dark" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your dark theme here -->
+        <item name="colorPrimary">@color/my_gray</item>-->
+        <item name="colorSecondary">@color/my_gray</item>
+        <item name="colorPrimaryContainer">@color/my_gray</item>
+        <item name="android:windowBackground">@color/my_black</item>
     </style>
 
 </resources>

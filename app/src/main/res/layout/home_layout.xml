@@ -7,6 +7,12 @@
     tools:context=".ui.home_screen.HomeFragment"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/gym_time"
+        android:layout_marginBottom="100dp"/>
+
     <Button
         android:id="@+id/workouts_button"
         android:layout_width="match_parent"

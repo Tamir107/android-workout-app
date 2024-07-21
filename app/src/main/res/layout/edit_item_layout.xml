@@ -96,6 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/workout_type"
+            android:backgroundTint="@android:color/transparent"
             android:inputType="none">
 
         </AutoCompleteTextView>
@@ -114,6 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/workout_location"
+            android:backgroundTint="@android:color/transparent"
             android:inputType="none">
 
         </AutoCompleteTextView>
@@ -141,8 +143,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/gym_time"
             android:id="@+id/res_img">
         </ImageView>
 

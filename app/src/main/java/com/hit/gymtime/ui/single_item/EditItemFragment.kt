@@ -109,7 +109,7 @@ class EditItemFragment : Fragment() {
             selectedId = it.id
 
             if(it.photo == null){
-                binding.resImg.setImageResource(R.drawable.ic_launcher_background)
+                binding.resImg.setImageResource(R.drawable.gym_time)
                 imageUri = null
             }
             else{

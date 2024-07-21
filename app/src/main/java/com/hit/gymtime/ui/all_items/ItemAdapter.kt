@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.hit.gymtime.R
 import com.hit.gymtime.data.models.Item
 import com.hit.gymtime.databinding.ItemLayoutBinding
 
@@ -35,7 +36,14 @@ class ItemAdapter(val items:List<Item>, val callBack : ItemListener) : RecyclerV
             binding.itemDateAndHour.text = "${item.date} || ${item.hour}"
             binding.itemPartner.text = if (item.partner == "") "Alone" else item.partner
             binding.itemLocationType.text = "${item.location} || ${item.type}"
-            Glide.with(binding.root).load(item.photo).circleCrop().into(binding.itemImg)
+            if(item.photo == null) {
+                Glide.with(binding.root).load(R.drawable.gym_time).circleCrop().into(binding.itemImg)
+            } else {
+                Glide.with(binding.root).load(item.photo).circleCrop().into(binding.itemImg)
+            }
+
+
+
         }
 
     }

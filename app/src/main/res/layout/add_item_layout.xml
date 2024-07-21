@@ -111,6 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/workout_type"
+            android:backgroundTint="@android:color/transparent"
             android:inputType="none">
 
         </AutoCompleteTextView>
@@ -129,6 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/workout_location"
+            android:backgroundTint="@android:color/transparent"
             android:inputType="none">
 
         </AutoCompleteTextView>

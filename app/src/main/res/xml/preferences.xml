@@ -13,7 +13,7 @@
             app:entries="@array/theme_names"
             app:entryValues="@array/theme_values"
             app:defaultValue="light"
-            app:icon="@drawable/ic_launcher_background"/>
+            app:icon="@drawable/baseline_brush_24"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -25,6 +25,6 @@
             app:entries="@array/city_names"
             app:entryValues="@array/city_values"
             app:defaultValue="@array/city_values"
-            app:icon="@drawable/circle_shape"/>
+            app:icon="@drawable/baseline_location_city_24"/>
     </PreferenceCategory>
 </PreferenceScreen>

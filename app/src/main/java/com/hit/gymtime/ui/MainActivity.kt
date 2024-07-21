@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         when (theme) {
             "light" -> setTheme(R.style.Theme_MyApp_Light)
             "dark" -> setTheme(R.style.Theme_MyApp_Dark)
-            "system" -> setTheme(R.style.Theme_MyApp)
         }
     }
 
