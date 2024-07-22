@@ -76,7 +76,7 @@ class AllItemsFragment : Fragment(), MenuProvider{
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                TODO("Not yet implemented")
+                TODO("Not yet implemented") // Must override for the onSwiped
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

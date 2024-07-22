@@ -21,8 +21,8 @@
     <string name="ok">OK</string>
     <string name="workout_session_scheduled_on">"Workout session scheduled on "</string>
     <string name="at">", at "</string>
-    <string name="the_gym_is_located_at">". The gym is located at "</string>
-    <string name="enjoy_your_workout_remember_every_step_brings_you_closer_to_your_goal">" .  Enjoy your workout! Remember, every step brings you closer to your goal."</string>
+    <string name="the_gym_is_located_at">"The gym is located at "</string>
+    <string name="enjoy_your_workout_remember_every_step_brings_you_closer_to_your_goal">" Enjoy your workout! Remember, every step brings you closer to your goal."</string>
     <string name="with_your_partner">" with your partner, "</string>
     <string name="location_access_is_required_for_this_feature_please_grant_the_permission">Location access is required for this feature. Please grant the permission.</string>
     <string name="location_access_has_been_permanently_denied_please_enable_it_in_the_app_settings">Location access has been permanently denied. Please enable it in the app settings.</string>

@@ -70,13 +70,13 @@ class DetailItemFragment : Fragment() {
         viewModel.chosenItem.observe(viewLifecycleOwner){
             gymAddress = viewModel.addresses[it.location]
 
-            val partnerInfo = if(it.partner == "") "" else getString(R.string.with_your_partner) + it.partner
+            val partnerInfo = if(it.partner == "") "." else getString(R.string.with_your_partner) + it.partner + "."
 
             binding.itemDescription.text =
                 getString(R.string.workout_session_scheduled_on) +
                         it.date + getString(R.string.at) + it.hour +
-                        partnerInfo + getString(R.string.the_gym_is_located_at) +
-                        gymAddress + getString(R.string.enjoy_your_workout_remember_every_step_brings_you_closer_to_your_goal)
+                        partnerInfo + "\n\n" + getString(R.string.the_gym_is_located_at) +
+                        gymAddress + ".\n\n" + getString(R.string.enjoy_your_workout_remember_every_step_brings_you_closer_to_your_goal)
 
             if (it.photo == null) {
                 Glide.with(requireContext()).load(R.drawable.motivation).into(binding.itemImg)

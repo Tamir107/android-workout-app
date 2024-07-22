@@ -9,10 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class itemRepository(application: Application) {  //: CoroutineScope {
-
-//    override val coroutineContext: CoroutineContext
-//        get() = Dispatchers.IO
+class itemRepository(application: Application) {
 
     private var itemDao:ItemDao?
 
@@ -24,9 +21,7 @@ class itemRepository(application: Application) {  //: CoroutineScope {
     fun getItems() = itemDao?.getItems()
 
     suspend fun addItem(item: Item){
-        //launch {
         itemDao?.addItem(item)
-        //}
     }
 
     suspend fun updateItem(item: Item){
@@ -34,16 +29,12 @@ class itemRepository(application: Application) {  //: CoroutineScope {
     }
 
     suspend fun deleteItem(item: Item) {
-        //launch {
         itemDao?.deleteItem(item)
-        //}
     }
 
     fun getItem(id:Int) = itemDao?.getItem(id)
 
     suspend fun deleteAll(){
-        //launch {
         itemDao?.deleteAll()
-        //}
     }
 }

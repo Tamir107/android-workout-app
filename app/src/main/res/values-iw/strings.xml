@@ -22,8 +22,8 @@
     <string name="ok">אוקיי</string>
     <string name="workout_session_scheduled_on">"אימון נקבע ל "</string>
     <string name="at">", ב "</string>
-    <string name="the_gym_is_located_at">". חדר הכושר נמצא ב "</string>
-    <string name="enjoy_your_workout_remember_every_step_brings_you_closer_to_your_goal">" . תהנה מהאימון! זכור, כל צעד מביא אותך לקראת המטרה."</string>
+    <string name="the_gym_is_located_at">" חדר הכושר נמצא ב "</string>
+    <string name="enjoy_your_workout_remember_every_step_brings_you_closer_to_your_goal">תהנה מהאימון! זכור, כל צעד מביא אותך לקראת המטרה.</string>
     <string name="with_your_partner">" עם הפרטנר, "</string>
     <string name="location_access_is_required_for_this_feature_please_grant_the_permission">נדרשת גישה למיקום עבור תכונה זו. בבקשה הענק את ההרשאה.</string>
     <string name="location_access_has_been_permanently_denied_please_enable_it_in_the_app_settings">הגישה למיקום נדחתה לצמיתות. בבקשה אפשר אותה בתוך הגדרות האפליקציה.</string>
